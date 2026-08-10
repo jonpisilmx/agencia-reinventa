@@ -36,78 +36,7 @@
     </style>
 </head>
 <body class="bg-cream text-gray-900 antialiased">
-<!-- INSTAGRAM PREVIEW MODAL -->
-<div id="instagramModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
-    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
-        <!-- Modal Header -->
-        <div class="bg-darkbg text-white px-6 py-4 flex justify-between items-center border-b border-white/10">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full p-[2px]">
-                    <div class="w-full h-full bg-darkbg rounded-full flex items-center justify-center">
-                        <i class="fa-brands fa-instagram text-accent"></i>
-                    </div>
-                </div>
-                <div>
-                    <h4 id="modalTitle" class="font-bold text-sm">Punto Paz Rentals</h4>
-                    <p class="text-[11px] text-gray-400">@puntopazrentals</p>
-                </div>
-            </div>
-            <button onclick="closeInstagramModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors cursor-pointer">
-                <i class="fa-solid fa-xmark text-sm"></i>
-            </button>
-        </div>
-        
-        <!-- Modal Body (Iframe) -->
-        <div class="relative w-full h-[550px] bg-gray-100 flex flex-col items-center justify-center p-2 overflow-hidden">
-            <iframe id="modalIframe" src="" class="w-full h-full border-0 rounded-2xl"></iframe>
-        </div>
 
-        <!-- Modal Footer -->
-        <div class="bg-cream-card px-6 py-3 flex justify-between items-center text-xs border-t border-gray-200">
-            <span class="text-gray-500">Vista previa interactiva</span>
-            <a id="modalFooterLink" href="https://www.instagram.com/puntopazrentals" target="_blank" class="text-accent font-semibold hover:underline flex items-center gap-1">
-                Ver perfil oficial <i class="fa-solid fa-chevron-right text-[10px]"></i>
-            </a>
-        </div>
-    </div>
-</div>
-
-<script>
-    function openInstagramModal(profileUrl, title, handle) {
-        const modal = document.getElementById('instagramModal');
-        const iframe = document.getElementById('modalIframe');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalFooterLink = document.getElementById('modalFooterLink');
-        
-        modalTitle.innerText = title;
-        modalFooterLink.href = profileUrl;
-        
-        // Asignamos la URL para el Iframe
-        iframe.src = profileUrl + "embed/";
-        
-        modal.classList.remove('hidden');
-        setTimeout(() => {
-            modal.classList.remove('opacity-0');
-        }, 10);
-    }
-
-    function closeInstagramModal() {
-        const modal = document.getElementById('instagramModal');
-        const iframe = document.getElementById('modalIframe');
-        modal.classList.add('opacity-0');
-        setTimeout(() => {
-            modal.classList.add('hidden');
-            iframe.src = '';
-        }, 300);
-    }
-
-    // Cierre al dar clic fuera de la ventana emergente
-    document.getElementById('instagramModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeInstagramModal();
-        }
-    });
-</script>
     <!-- NAVIGATION -->
     <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
         <div class="bg-darkbg text-white font-bold text-lg px-5 py-2 rounded-full tracking-wide">
@@ -186,68 +115,68 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  <!-- Client 1: Punto Paz Rentals con Overlay interactivo -->
-<div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm flex flex-col justify-between">
-    <div>
-        <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full p-[2px]">
-                    <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
-                        <i class="fa-brands fa-instagram text-xl text-accent"></i>
+            <!-- Client 1: Punto Paz Rentals con Modal al dar clic -->
+            <div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full p-[2px]">
+                                <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+                                    <i class="fa-brands fa-instagram text-xl text-accent"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-base">Punto Paz Rentals</h3>
+                                <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="text-xs text-gray-500 hover:text-accent transition-colors">@puntopazrentals</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mini-grid 6 posts con disparadores de Modal -->
+                    <div class="grid grid-cols-3 gap-2 my-4">
+                        <button onclick="openInstagramModal('https://www.instagram.com/puntopazrentals/', 'Punto Paz Rentals', '@puntopazrentals')" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block text-left cursor-pointer border-0 p-0">
+                            <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz01.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 1">
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </div>
+                        </button>
+                        <button onclick="openInstagramModal('https://www.instagram.com/puntopazrentals/', 'Punto Paz Rentals', '@puntopazrentals')" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block text-left cursor-pointer border-0 p-0">
+                            <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz02.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 2">
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </div>
+                        </button>
+                        <button onclick="openInstagramModal('https://www.instagram.com/puntopazrentals/', 'Punto Paz Rentals', '@puntopazrentals')" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block text-left cursor-pointer border-0 p-0">
+                            <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz03.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 3">
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </div>
+                        </button>
+                        <button onclick="openInstagramModal('https://www.instagram.com/puntopazrentals/', 'Punto Paz Rentals', '@puntopazrentals')" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block text-left cursor-pointer border-0 p-0">
+                            <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz04.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 4">
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </div>
+                        </button>
+                        <button onclick="openInstagramModal('https://www.instagram.com/puntopazrentals/', 'Punto Paz Rentals', '@puntopazrentals')" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block text-left cursor-pointer border-0 p-0">
+                            <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz05.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 5">
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </div>
+                        </button>
+                        <button onclick="openInstagramModal('https://www.instagram.com/puntopazrentals/', 'Punto Paz Rentals', '@puntopazrentals')" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block text-left cursor-pointer border-0 p-0">
+                            <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz06.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 6">
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </div>
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <h3 class="font-bold text-gray-900 text-base">Punto Paz Rentals</h3>
-                    <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="text-xs text-gray-500 hover:text-accent transition-colors">@puntopazrentals</a>
-                </div>
+                <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="pt-2 flex items-center justify-between text-xs font-semibold text-accent hover:underline">
+                    <span>Ver perfil completo</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
             </div>
-        </div>
-        
-        <!-- Mini-grid 6 posts con Overlay de Instagram -->
-        <div class="grid grid-cols-3 gap-2 my-4">
-            <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block">
-                <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz01.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 1">
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block">
-                <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz02.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 2">
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block">
-                <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz03.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 3">
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block">
-                <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz04.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 4">
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block">
-                <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz05.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 5">
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 block">
-                <img src="https://jonpisilmx.github.io/agencia-reinventa/images/paz06.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" alt="Post 6">
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                    <i class="fa-brands fa-instagram text-xl"></i>
-                </div>
-            </a>
-        </div>
-    </div>
-    <a href="https://www.instagram.com/puntopazrentals" target="_blank" class="pt-2 flex items-center justify-between text-xs font-semibold text-accent hover:underline">
-        <span>Ver perfil completo</span>
-        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-    </a>
-</div>
 
             <!-- Client 2 -->
             <div class="bg-white p-6 rounded-3xl border border-gray-200 shadow-sm flex flex-col justify-between">
@@ -266,7 +195,6 @@
                         </div>
                     </div>
                     
-                    <!-- Mini-grid 6 posts (3x2) -->
                     <div class="grid grid-cols-3 gap-2 my-4">
                         <div class="aspect-square rounded-xl overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform" alt="Post 1"></div>
                         <div class="aspect-square rounded-xl overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform" alt="Post 2"></div>
@@ -299,7 +227,6 @@
                         </div>
                     </div>
                     
-                    <!-- Mini-grid 6 posts (3x2) -->
                     <div class="grid grid-cols-3 gap-2 my-4">
                         <div class="aspect-square rounded-xl overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform" alt="Post 1"></div>
                         <div class="aspect-square rounded-xl overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform" alt="Post 2"></div>
@@ -332,7 +259,6 @@
                         </div>
                     </div>
                     
-                    <!-- Mini-grid 6 posts (3x2) -->
                     <div class="grid grid-cols-3 gap-2 my-4">
                         <div class="aspect-square rounded-xl overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform" alt="Post 1"></div>
                         <div class="aspect-square rounded-xl overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform" alt="Post 2"></div>
@@ -365,7 +291,6 @@
                         </div>
                     </div>
                     
-                    <!-- Mini-grid 6 posts (3x2) -->
                     <div class="grid grid-cols-3 gap-2 my-4">
                         <div class="aspect-square rounded-xl overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform" alt="Post 1"></div>
                         <div class="aspect-square rounded-xl overflow-hidden bg-gray-100"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform" alt="Post 2"></div>
@@ -397,7 +322,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Service 1 -->
                 <div class="bg-darkcard p-8 rounded-2xl border border-white/5 hover:border-accent/40 transition-all group">
                     <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent text-xl mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
                         <i class="fa-solid fa-hashtag"></i>
@@ -408,7 +332,6 @@
                     </p>
                 </div>
 
-                <!-- Service 2 -->
                 <div class="bg-darkcard p-8 rounded-2xl border border-white/5 hover:border-accent/40 transition-all group">
                     <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent text-xl mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
                         <i class="fa-solid fa-palette"></i>
@@ -419,7 +342,6 @@
                     </p>
                 </div>
 
-                <!-- Service 3 -->
                 <div class="bg-darkcard p-8 rounded-2xl border border-white/5 hover:border-accent/40 transition-all group">
                     <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent text-xl mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
                         <i class="fa-solid fa-code"></i>
@@ -430,7 +352,6 @@
                     </p>
                 </div>
 
-                <!-- Service 4 -->
                 <div class="bg-darkcard p-8 rounded-2xl border border-white/5 hover:border-accent/40 transition-all group">
                     <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent text-xl mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
                         <i class="fa-solid fa-bullseye"></i>
@@ -478,13 +399,11 @@
             <p class="text-gray-600 text-sm mt-3">Soluciones diseñadas para adaptarse al nivel de aceleración que tu negocio requiere.</p>
         </div>
 
-        <!-- Sub-section: Instagram -->
         <div class="mb-16">
             <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-3">
                 <i class="fa-brands fa-instagram text-accent"></i> Gestoría de Redes Sociales (Instagram)
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Esencial -->
                 <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div>
                         <span class="text-xs font-bold text-accent uppercase tracking-wider">Arranque</span>
@@ -503,7 +422,6 @@
                     <a href="#contacto" class="w-full text-center bg-cream-card text-gray-900 font-semibold py-3 rounded-xl hover:bg-accent hover:text-white transition-colors">Elegir Plan</a>
                 </div>
 
-                <!-- Intermedio -->
                 <div class="bg-white p-8 rounded-3xl border-2 border-accent shadow-md flex flex-col justify-between relative">
                     <div class="absolute -top-3 right-6 bg-accent text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full">Recomendado</div>
                     <div>
@@ -523,7 +441,6 @@
                     <a href="#contacto" class="w-full text-center bg-accent text-white font-semibold py-3 rounded-xl hover:bg-accent-hover transition-colors">Elegir Plan</a>
                 </div>
 
-                <!-- Premium -->
                 <div class="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div>
                         <span class="text-xs font-bold text-accent uppercase tracking-wider">Cobertura Total</span>
@@ -544,9 +461,7 @@
             </div>
         </div>
 
-        <!-- Sub-section: Web & Ads -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
-            <!-- Desarrollo Web -->
             <div class="bg-darkbg text-white p-8 rounded-3xl flex flex-col justify-between">
                 <div>
                     <span class="text-xs uppercase tracking-widest text-accent font-bold">Propiedad Digital</span>
@@ -573,7 +488,6 @@
                 </div>
             </div>
 
-            <!-- Campañas Publicitarias -->
             <div class="bg-white p-8 rounded-3xl border border-gray-200 flex flex-col justify-between shadow-sm">
                 <div>
                     <span class="text-xs uppercase tracking-widest text-accent font-bold">Publicidad Digital</span>
@@ -642,7 +556,6 @@
                 </div>
             </div>
 
-            <!-- Quick Contact Form for WhatsApp -->
             <div class="lg:col-span-6 bg-darkcard p-8 rounded-3xl border border-white/10 space-y-6">
                 <h3 class="text-2xl font-bold text-center">¿Listo para comenzar?</h3>
                 <p class="text-gray-400 text-sm text-center">Ingresa tu nombre y envíanos un mensaje directo por WhatsApp para analizar las necesidades de tu negocio.</p>
@@ -666,6 +579,43 @@
         <p>Alojado en GitHub Pages</p>
     </footer>
 
+    <!-- INSTAGRAM PREVIEW MODAL -->
+    <div id="instagramModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+            <!-- Modal Header -->
+            <div class="bg-darkbg text-white px-6 py-4 flex justify-between items-center border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full p-[2px]">
+                        <div class="w-full h-full bg-darkbg rounded-full flex items-center justify-center">
+                            <i class="fa-brands fa-instagram text-accent"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 id="modalTitle" class="font-bold text-sm">Punto Paz Rentals</h4>
+                        <p id="modalHandle" class="text-[11px] text-gray-400">@puntopazrentals</p>
+                    </div>
+                </div>
+                <button onclick="closeInstagramModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors cursor-pointer">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Body (Iframe) -->
+            <div class="relative w-full h-[550px] bg-gray-100 flex flex-col items-center justify-center p-2 overflow-hidden">
+                <iframe id="modalIframe" src="" class="w-full h-full border-0 rounded-2xl"></iframe>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-cream-card px-6 py-3 flex justify-between items-center text-xs border-t border-gray-200">
+                <span class="text-gray-500">Vista previa interactiva</span>
+                <a id="modalFooterLink" href="https://www.instagram.com/puntopazrentals" target="_blank" class="text-accent font-semibold hover:underline flex items-center gap-1">
+                    Ver perfil oficial <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FUNCTIONS -->
     <script>
         function sendToWhatsApp(e) {
             e.preventDefault();
@@ -674,6 +624,43 @@
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/529581098287?text=${encodedMessage}`, '_blank');
         }
+
+        function openInstagramModal(profileUrl, title, handle) {
+            const modal = document.getElementById('instagramModal');
+            const iframe = document.getElementById('modalIframe');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalHandle = document.getElementById('modalHandle');
+            const modalFooterLink = document.getElementById('modalFooterLink');
+            
+            modalTitle.innerText = title;
+            modalHandle.innerText = handle;
+            modalFooterLink.href = profileUrl;
+            
+            // Asignamos la URL para el iframe con embed de Instagram
+            iframe.src = profileUrl + "embed/";
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeInstagramModal() {
+            const modal = document.getElementById('instagramModal');
+            const iframe = document.getElementById('modalIframe');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                iframe.src = '';
+            }, 300);
+        }
+
+        // Cierre al hacer clic fuera del recuadro
+        document.getElementById('instagramModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeInstagramModal();
+            }
+        });
     </script>
 </body>
 </html>
