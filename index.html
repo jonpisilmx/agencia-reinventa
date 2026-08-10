@@ -36,7 +36,78 @@
     </style>
 </head>
 <body class="bg-cream text-gray-900 antialiased">
+<!-- INSTAGRAM PREVIEW MODAL -->
+<div id="instagramModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+        <!-- Modal Header -->
+        <div class="bg-darkbg text-white px-6 py-4 flex justify-between items-center border-b border-white/10">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full p-[2px]">
+                    <div class="w-full h-full bg-darkbg rounded-full flex items-center justify-center">
+                        <i class="fa-brands fa-instagram text-accent"></i>
+                    </div>
+                </div>
+                <div>
+                    <h4 id="modalTitle" class="font-bold text-sm">Punto Paz Rentals</h4>
+                    <p class="text-[11px] text-gray-400">@puntopazrentals</p>
+                </div>
+            </div>
+            <button onclick="closeInstagramModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        
+        <!-- Modal Body (Iframe) -->
+        <div class="relative w-full h-[550px] bg-gray-100 flex flex-col items-center justify-center p-2 overflow-hidden">
+            <iframe id="modalIframe" src="" class="w-full h-full border-0 rounded-2xl"></iframe>
+        </div>
 
+        <!-- Modal Footer -->
+        <div class="bg-cream-card px-6 py-3 flex justify-between items-center text-xs border-t border-gray-200">
+            <span class="text-gray-500">Vista previa interactiva</span>
+            <a id="modalFooterLink" href="https://www.instagram.com/puntopazrentals" target="_blank" class="text-accent font-semibold hover:underline flex items-center gap-1">
+                Ver perfil oficial <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openInstagramModal(profileUrl, title, handle) {
+        const modal = document.getElementById('instagramModal');
+        const iframe = document.getElementById('modalIframe');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalFooterLink = document.getElementById('modalFooterLink');
+        
+        modalTitle.innerText = title;
+        modalFooterLink.href = profileUrl;
+        
+        // Asignamos la URL para el Iframe
+        iframe.src = profileUrl + "embed/";
+        
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+        }, 10);
+    }
+
+    function closeInstagramModal() {
+        const modal = document.getElementById('instagramModal');
+        const iframe = document.getElementById('modalIframe');
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            iframe.src = '';
+        }, 300);
+    }
+
+    // Cierre al dar clic fuera de la ventana emergente
+    document.getElementById('instagramModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeInstagramModal();
+        }
+    });
+</script>
     <!-- NAVIGATION -->
     <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
         <div class="bg-darkbg text-white font-bold text-lg px-5 py-2 rounded-full tracking-wide">
